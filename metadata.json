@@ -1,0 +1,6 @@
+{
+  "name": "MIND-4",
+  "description": "Industrial intelligence and predictive maintenance platform for real-time machine condition monitoring, anomaly detection, and fleet performance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

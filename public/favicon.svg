@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#0B0C0D"/>
+
+  <rect
+    x="48"
+    y="48"
+    width="416"
+    height="416"
+    rx="72"
+    fill="#151719"
+    stroke="#24272A"
+    stroke-width="8"
+  />
+
+  <!-- Industrial circuit lines -->
+  <path
+    d="M96 160H160V128M352 160H416V128M96 352H160V384M352 352H416V384"
+    fill="none"
+    stroke="#64748B"
+    stroke-width="12"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- M -->
+  <path
+    d="M112 328V184L176 272L240 184V328"
+    fill="none"
+    stroke="#E1E4E6"
+    stroke-width="34"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- 4 -->
+  <path
+    d="M344 184L276 280H384M356 184V328"
+    fill="none"
+    stroke="#E1E4E6"
+    stroke-width="34"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Status indicator -->
+  <circle cx="416" cy="96" r="20" fill="#22C55E"/>
+</svg>

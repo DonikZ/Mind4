@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  :root {
+    --bg-main: #f8fafc; /* slate-50 */
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-subtle: #f1f5f9; /* slate-100 */
+    --border-base: #e2e8f0; /* slate-200 */
+    --text-main: #0f172a; /* slate-900 */
+    --text-muted: #475569; /* slate-600 */
+    --text-dim: #94a3b8; /* slate-400 */
+  }
+
+  .dark {
+    --bg-main: #0B0C0D;
+    --bg-surface: #0F1113;
+    --bg-card: #151719;
+    --bg-subtle: #1A1D1F;
+    --border-base: #24272A;
+    --text-main: #E1E4E6;
+    --text-muted: #8A929B;
+    --text-dim: #4B5259;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'tnum' 1, 'cv05' 1, 'cv11' 1;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  code, kbd, samp, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-feature-settings: 'tnum' 1;
+  }
+}
+
+/* Precision industrial custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-base);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
+}
