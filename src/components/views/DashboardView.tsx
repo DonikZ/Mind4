@@ -380,65 +380,124 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </button>
         </div>
 
-        <div className="bg-white dark:bg-[#151719] border border-slate-200 dark:border-[#24272A] rounded-lg overflow-hidden">
-          <table className="w-full text-left border-collapse">
-            <thead className="bg-slate-100 dark:bg-[#1A1D1F] border-b border-slate-200 dark:border-[#24272A]">
-              <tr className="text-[11px] font-bold text-slate-500 dark:text-[#8A929B] uppercase tracking-wider">
-                <th className="px-6 py-3">Machine</th>
-                <th className="px-6 py-3">Health</th>
-                <th className="px-6 py-3">Risk</th>
-                <th className="px-6 py-3">Primary Issue</th>
-                <th className="px-6 py-3">Last Seen</th>
-                <th className="px-6 py-3">Action</th>
-              </tr>
-            </thead>
-            <tbody className="text-[13px]">
-              {attentionMachines.map((m) => (
-                <tr
-                  key={m.id}
-                  onClick={() => onSelectMachine(m)}
-                  className="border-b border-slate-200 dark:border-[#24272A] hover:bg-slate-100 dark:hover:bg-[#1A1D1F] transition-colors cursor-pointer"
-                >
-                  <td className="px-6 py-3 font-semibold text-slate-900 dark:text-[#E1E4E6]">
-                    {m.id} {m.name}
-                  </td>
-                  <td className="px-6 py-3">
-                    <span className={`font-bold ${m.healthScore < 70 ? 'text-red-500' : 'text-amber-500'}`}>
-                      {m.healthScore}
-                    </span>
-                  </td>
-                  <td className="px-6 py-3">
-                    <span
-                      className={`px-2 py-0.5 text-[11px] font-bold rounded border ${
-                        m.riskLevel === 'high'
-                          ? 'bg-red-500/10 text-red-500 border-red-500/20'
-                          : 'bg-amber-500/10 text-amber-500 border-amber-500/20'
-                      }`}
-                    >
-                      {m.riskLevel === 'high' ? 'High' : 'Medium'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-3 text-slate-900 dark:text-[#E1E4E6]">
-                    {m.primaryIssue || 'Vibration Deviation'}
-                  </td>
-                  <td className="px-6 py-3 text-slate-500 dark:text-[#8A929B]">
-                    {m.lastUpdate}
-                  </td>
-                  <td className="px-6 py-3">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onSelectMachine(m);
-                      }}
-                      className="text-blue-400 font-medium hover:text-blue-300"
-                    >
-                      View
-                    </button>
-                  </td>
+        {/* Needs Attention Table & Cards */}
+        <div className="space-y-4">
+          {/* Desktop Table View */}
+          <div className="hidden md:block bg-white dark:bg-[#151719] border border-slate-200 dark:border-[#24272A] rounded-lg overflow-x-auto">
+            <table className="w-full text-left border-collapse whitespace-nowrap">
+              <thead className="bg-slate-100 dark:bg-[#1A1D1F] border-b border-slate-200 dark:border-[#24272A]">
+                <tr className="text-[11px] font-bold text-slate-500 dark:text-[#8A929B] uppercase tracking-wider">
+                  <th className="px-6 py-3">Machine</th>
+                  <th className="px-6 py-3">Health</th>
+                  <th className="px-6 py-3">Risk</th>
+                  <th className="px-6 py-3">Primary Issue</th>
+                  <th className="px-6 py-3">Last Seen</th>
+                  <th className="px-6 py-3">Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="text-[13px]">
+                {attentionMachines.map((m) => (
+                  <tr
+                    key={m.id}
+                    onClick={() => onSelectMachine(m)}
+                    className="border-b border-slate-200 dark:border-[#24272A] hover:bg-slate-100 dark:hover:bg-[#1A1D1F] transition-colors cursor-pointer"
+                  >
+                    <td className="px-6 py-3 font-semibold text-slate-900 dark:text-[#E1E4E6]">
+                      {m.id} {m.name}
+                    </td>
+                    <td className="px-6 py-3">
+                      <span className={`font-bold ${m.healthScore < 70 ? 'text-red-500' : 'text-amber-500'}`}>
+                        {m.healthScore}
+                      </span>
+                    </td>
+                    <td className="px-6 py-3">
+                      <span
+                        className={`px-2 py-0.5 text-[11px] font-bold rounded border ${
+                          m.riskLevel === 'high'
+                            ? 'bg-red-500/10 text-red-500 border-red-500/20'
+                            : 'bg-amber-500/10 text-amber-500 border-amber-500/20'
+                        }`}
+                      >
+                        {m.riskLevel === 'high' ? 'High' : 'Medium'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-3 text-slate-900 dark:text-[#E1E4E6]">
+                      {m.primaryIssue || 'Vibration Deviation'}
+                    </td>
+                    <td className="px-6 py-3 text-slate-500 dark:text-[#8A929B]">
+                      {m.lastUpdate}
+                    </td>
+                    <td className="px-6 py-3">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectMachine(m);
+                        }}
+                        className="text-blue-400 font-medium hover:text-blue-300"
+                      >
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Cards View */}
+          <div className="md:hidden space-y-4">
+            {attentionMachines.map((m) => (
+              <div
+                key={m.id}
+                onClick={() => onSelectMachine(m)}
+                className="bg-white dark:bg-[#151719] rounded-lg border border-slate-200 dark:border-[#24272A] p-4 shadow-sm space-y-3 cursor-pointer hover:border-blue-500/50 transition-colors"
+              >
+                <div className="flex justify-between items-start">
+                  <div>
+                    <div className="font-bold text-slate-900 dark:text-[#E1E4E6]">{m.id}</div>
+                    <div className="text-xs text-slate-500 dark:text-[#8A929B]">{m.name}</div>
+                  </div>
+                  <span
+                    className={`px-2 py-0.5 text-[10px] font-bold uppercase rounded border ${
+                      m.riskLevel === 'high'
+                        ? 'bg-red-500/10 text-red-500 border-red-500/20'
+                        : 'bg-amber-500/10 text-amber-500 border-amber-500/20'
+                    }`}
+                  >
+                    {m.riskLevel === 'high' ? 'High Risk' : 'Medium Risk'}
+                  </span>
+                </div>
+                
+                <div className="flex justify-between items-center bg-slate-50 dark:bg-[#0F1113] p-2.5 rounded border border-slate-100 dark:border-[#24272A]">
+                  <div>
+                    <div className="text-[10px] font-medium uppercase tracking-wider text-slate-500 dark:text-[#8A929B]">Primary Issue</div>
+                    <div className="text-xs font-semibold text-slate-900 dark:text-[#E1E4E6] mt-0.5">{m.primaryIssue || 'Vibration Deviation'}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[10px] font-medium uppercase tracking-wider text-slate-500 dark:text-[#8A929B]">Health</div>
+                    <div className={`font-bold font-mono text-sm mt-0.5 ${m.healthScore < 70 ? 'text-red-500' : 'text-amber-500'}`}>
+                      {m.healthScore}%
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-3 flex justify-between items-center border-t border-slate-100 dark:border-[#24272A]">
+                  <div className="text-xs text-slate-500 dark:text-[#8A929B]">
+                    Updated {m.lastUpdate}
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onSelectMachine(m);
+                    }}
+                    className="text-xs px-3 py-1.5 rounded bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 font-medium transition-colors"
+                  >
+                    View Details
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
